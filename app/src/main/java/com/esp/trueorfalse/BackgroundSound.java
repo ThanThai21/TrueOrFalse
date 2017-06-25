@@ -27,7 +27,7 @@ public class BackgroundSound extends AsyncTask<Void, Void, Void> {
             mediaPlayer.setDataSource(descriptor.getFileDescriptor(), descriptor.getStartOffset(), descriptor.getLength());
             descriptor.close();
             mediaPlayer.prepare();
-            mediaPlayer.setVolume(1, 1);
+            mediaPlayer.setVolume(0, 0);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {

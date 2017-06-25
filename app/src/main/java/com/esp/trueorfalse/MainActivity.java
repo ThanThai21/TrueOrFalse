@@ -4,11 +4,14 @@ import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.media.Image;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        hideStatusbar();
         init();
         mapping();
         listener();
@@ -72,18 +75,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        backgroundSound.execute();
+        IntroActivity.backgroundSound.soundOn();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        backgroundSound.cancel(true);
+        IntroActivity.backgroundSound.soundOff();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+    }
+
+    private void hideStatusbar() {
+        if (Build.VERSION.SDK_INT < 16) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } else {
+            View decorView = getWindow().getDecorView();
+            int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+            decorView.setSystemUiVisibility(uiOptions);
+        }
     }
 
     private void init() {
