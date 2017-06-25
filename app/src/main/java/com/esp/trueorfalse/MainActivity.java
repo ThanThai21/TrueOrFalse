@@ -2,6 +2,7 @@ package com.esp.trueorfalse;
 
 import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton gameOverRestart;
     private ImageButton gameOverMenu;
 
-//    private BackgroundSound backgroundSound;
 
     private boolean soundOn = true;
     private int point = 0;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private int number1;
     private int number2;
     private int bestScore = 0;
-    private int length = 10000;
+    private int length = 8000;
     private CountDownTimer countDownTimer;
     private MediaPlayer mediaPlayer;
     private AssetFileDescriptor descriptor;
@@ -101,35 +101,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        Random rd = new Random();
+        int r = rd.nextInt(200);
+        int g = rd.nextInt(200);
+        int b = rd.nextInt(200);
+        View screen = findViewById(R.id.main_screen);
+        screen.setBackgroundColor(Color.argb(255, r, g, b));
         sf = getSharedPreferences("tof", MODE_PRIVATE);
         editor = sf.edit();
         bestScore = sf.getInt("best", 0);
         mediaPlayer = new MediaPlayer();
-        countDownTimer = new CountDownTimer(length, 1) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timer.setProgress((int) millisUntilFinished);
-            }
 
-            @Override
-            public void onFinish() {
-                if (point > bestScore) {
-                    bestScore = point;
-                    editor.putInt("best", bestScore);
-                    editor.commit();
-                }
-                gameOver.setVisibility(View.VISIBLE);
-                gameOverScore.setText(point + "");
-                gameOverBestScore.setText(bestScore+"");
-                falseButton.setEnabled(false);
-                trueButton.setEnabled(false);
-            }
-        };
     }
 
 
     private void initGame() {
-        countDownTimer.cancel();
         boolean rs;
         Random rd = new Random();
         if (point < 30) {
@@ -162,9 +148,34 @@ public class MainActivity extends AppCompatActivity {
         }
         expressionTextView.setText(number1 + "+" + number2);
         resultTextView.setText("=" + result);
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        countDownTimer = null;
+        countDownTimer = new CountDownTimer(length, 1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer.setProgress((int) millisUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                if (point > bestScore) {
+                    bestScore = point;
+                    editor.putInt("best", bestScore);
+                    editor.commit();
+                }
+                gameOver.setVisibility(View.VISIBLE);
+                gameOverScore.setText(point + "");
+                gameOverBestScore.setText(bestScore+"");
+                falseButton.setEnabled(false);
+                trueButton.setEnabled(false);
+            }
+        };
 
         timer.setMax(length);
         timer.setProgress(length);
+        countDownTimer.cancel();
         countDownTimer.start();
     }
 
