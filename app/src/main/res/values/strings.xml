@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TrueOrFalse</string>
+    <string name="rate">Please rate my application as soon as it is present on market</string>
+    <string name="more">You can find more game in next update. Thank you!</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundIntro"
+    tools:context="com.esp.trueorfalse.IntroActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:background="@color/transparent"
+        android:src="@drawable/true_false_math"/>
+
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_play"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/playButton"
+        android:layout_centerHorizontal="true">
+        <ImageButton
+            android:id="@+id/rateButton"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:padding="0dp"
+            android:src="@drawable/ic_rate"
+            android:scaleType="fitXY"/>
+        <ImageButton
+            android:id="@+id/moreButton"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:padding="0dp"
+            android:src="@drawable/ic_more"
+            android:scaleType="fitXY"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

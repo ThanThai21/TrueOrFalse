@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_screen"
+    android:background="@color/colooGreen"
+    tools:context="com.esp.trueorfalse.MainActivity">
+
+    <ProgressBar
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:background="@color/transparent"
+        android:progressTint="@color/colorWhite"
+        android:scaleY="4"
+        android:max="100"
+        android:progress="100"/>
+
+    <ImageButton
+        android:id="@+id/soundButton"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_sound_on"
+        android:scaleType="fitXY"/>
+
+    <com.esp.customfonttextview.CustomFontTextView
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="30dp"
+        android:text="0"
+        android:textColor="@color/colorWhite"
+        android:textSize="50sp"
+        app:typefaceAssets="fonts/font.ttf"/>
+
+    <com.esp.customfonttextview.CustomFontTextView
+        android:id="@+id/expression"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/result"
+        android:text="3+6"
+        android:textColor="@color/colorWhite"
+        android:textSize="80sp"
+        app:typefaceAssets="fonts/font.ttf"/>
+
+    <com.esp.customfonttextview.CustomFontTextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="=4"
+        android:textColor="@color/colorWhite"
+        android:textSize="80dp"
+        app:typefaceAssets="fonts/font.ttf"/>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
+        <ImageButton
+            android:id="@+id/trueButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_true"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:id="@+id/falseButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_false"
+            android:scaleType="fitXY"/>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/game_over"
+        layout="@layout/game_over_panel"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>
